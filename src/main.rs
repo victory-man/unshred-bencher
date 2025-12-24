@@ -97,5 +97,5 @@ fn main() {
     handle0.abort();
     handle1.abort();
 
-    async_runtime.shutdown_timeout(Duration::from_secs(30));
+    async_runtime.shutdown_timeout(Duration::from_secs(1));
 }
