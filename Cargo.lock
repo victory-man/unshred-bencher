@@ -509,7 +509,7 @@ dependencies = [
  "ark-std 0.5.0",
  "educe",
  "fnv",
- "hashbrown 0.15.5",
+ "hashbrown 0.15.2",
  "itertools 0.13.0",
  "num-bigint 0.4.6",
  "num-integer",
@@ -628,7 +628,7 @@ dependencies = [
  "ark-std 0.5.0",
  "educe",
  "fnv",
- "hashbrown 0.15.5",
+ "hashbrown 0.15.2",
 ]
 
 [[package]]
@@ -1075,7 +1075,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "115e54d64eb62cdebad391c19efc9dce4981c690c85a33a12199d99bb9546fee"
 dependencies = [
  "borsh-derive 0.10.4",
- "hashbrown 0.12.3",
+ "hashbrown 0.13.2",
 ]
 
 [[package]]
@@ -1544,9 +1544,9 @@ dependencies = [
 
 [[package]]
 name = "crypto-common"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1bfb12502f3fc46cca1bb51ac28df9d618d813cdc3d2f25b9fe775a34af26bb3"
+checksum = "78c8292055d1c1df0cce5d180393dc8cce0abec0a7102adb6c7b1eef6016d60a"
 dependencies = [
  "generic-array",
  "rand_core 0.6.4",
@@ -2355,9 +2355,9 @@ dependencies = [
 
 [[package]]
 name = "generic-array"
-version = "0.14.9"
+version = "0.14.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4bb6743198531e02858aeaea5398fcc883e71851fcbcb5a2f773e2fb6cb1edf2"
+checksum = "85649ca51fd72272d7821adaf274ad91c288277713d9c18820d8499a7ff69e9a"
 dependencies = [
  "typenum",
  "version_check",
@@ -2526,9 +2526,9 @@ checksum = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
 
 [[package]]
 name = "hashbrown"
-version = "0.15.5"
+version = "0.15.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1"
+checksum = "bf151400ff0baff5465007dd2f3e717f3fe502074ca563069ce3a6629d07b289"
 dependencies = [
  "allocator-api2",
  "equivalent",
@@ -3271,7 +3271,7 @@ version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a35523c6dfa972e1fd19132ef647eff4360a6546c6271807e1327ca6e8797f96"
 dependencies = [
- "hashbrown 0.15.5",
+ "hashbrown 0.15.2",
 ]
 
 [[package]]
@@ -9137,9 +9137,12 @@ dependencies = [
 
 [[package]]
 name = "solana-security-txt"
-version = "1.1.1"
+version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "468aa43b7edb1f9b7b7b686d5c3aeb6630dc1708e86e31343499dd5c4d775183"
+checksum = "156bb61a96c605fa124e052d630dba2f6fb57e08c7d15b757e1e958b3ed7b3fe"
+dependencies = [
+ "hashbrown 0.15.2",
+]
 
 [[package]]
 name = "solana-seed-derivable"
@@ -12164,7 +12167,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#887f07b719a9356371a2a06046ffb1bec309a27c"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#57e5c466a3f8962d461df68e06a6bc30148f36f1"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
