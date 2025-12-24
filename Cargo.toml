@@ -1,0 +1,15 @@
+[package]
+name = "unshred-bencher"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+unshred = { git = "https://github.com/victory-man/unshred.git", package = "unshred", branch = "feat_async"}
+solana-sdk = "3.0.0"
+solana-hash = "3.0.0"
+solana-address = { version = "1.0.0", features = ["atomic", "borsh", "bytemuck", "curve25519", "decode", "dev-context-only-utils", "error", "rand", "sanitize", "serde", "sha2", "std", "syscalls"] }
+tokio = "1.45.1"
+tracing = "0.1.41"
+anyhow = "1.0.100"
+tracing-subscriber = "0.3.22"
+hdrhistogram = "7.5.4"
