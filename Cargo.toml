@@ -5,14 +5,17 @@ edition = "2024"
 
 [dependencies]
 unshred = { git = "https://github.com/victory-man/unshred.git", package = "unshred", branch = "feat_async"}
-solana-sdk = "3.0.0"
-solana-hash = "3.0.0"
-solana-address = { version = "1.0.0", features = ["atomic", "borsh", "bytemuck", "curve25519", "decode", "dev-context-only-utils", "error", "rand", "sanitize", "serde", "sha2", "std", "syscalls"] }
+unshred_0 = { git = "https://github.com/dyodx/unshred.git", package = "unshred"}
 tokio = "1.45.1"
 tracing = "0.1.41"
 anyhow = "1.0.100"
 tracing-subscriber = "0.3.22"
 hdrhistogram = "7.5.4"
+
+[features]
+default = ["async_version"]
+origin_version = []
+async_version = []
 
 [profile.release]
 debug = false

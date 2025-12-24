@@ -4,7 +4,6 @@ use std::cell::RefCell;
 use std::sync::{LazyLock, RwLock};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use tracing::{error, info, trace};
-use unshred::{TransactionEvent, TransactionHandler, UnshredProcessor};
 
 static HIST_GLOBAL: LazyLock<RwLock<SyncHistogram<u64>>> = LazyLock::new(|| {
     let hist = Histogram::<u64>::new_with_max(10_000_000, 3).unwrap();
@@ -15,10 +14,34 @@ thread_local! {
     static HIST: RefCell<Recorder<u64>> = RefCell::new(HIST_GLOBAL.read().unwrap().recorder());
 }
 
-struct FromShredTxHandler;
+struct FromShredTxHandlerAsync;
+struct FromShredTxHandlerOrigin;
 
-impl TransactionHandler for FromShredTxHandler {
-    fn handle_transaction(&self, event: &TransactionEvent) -> anyhow::Result<()> {
+#[cfg(feature = "async_version")]
+impl unshred::TransactionHandler for FromShredTxHandlerAsync {
+    fn handle_transaction(&self, event: &unshred::TransactionEvent) -> anyhow::Result<()> {
+        let shred_spent = if let Some(received_at_micros) = event.received_at_micros {
+            let now_micros = SystemTime::now().duration_since(UNIX_EPOCH)?.as_micros() as u64;
+            Some(Duration::from_micros(now_micros - received_at_micros))
+        } else {
+            None
+        };
+        trace!("shred_spent: {:?}", &shred_spent);
+        if let Some(shred_spent) = shred_spent {
+            HIST.with(|x| {
+                let mut recorder = x.borrow_mut();
+                if let Err(err) = recorder.record(shred_spent.as_micros() as u64) {
+                    error!("record shred_spent error: {:?}", err);
+                }
+            })
+        }
+        Ok(())
+    }
+}
+
+#[cfg(feature = "origin_version")]
+impl unshred_0::TransactionHandler for FromShredTxHandlerOrigin {
+    fn handle_transaction(&self, event: &unshred_0::TransactionEvent) -> anyhow::Result<()> {
         let shred_spent = if let Some(received_at_micros) = event.received_at_micros {
             let now_micros = SystemTime::now().duration_since(UNIX_EPOCH)?.as_micros() as u64;
             Some(Duration::from_micros(now_micros - received_at_micros))
@@ -41,8 +64,26 @@ impl TransactionHandler for FromShredTxHandler {
 fn main() {
     tracing_subscriber::fmt::init();
 
-    let processor = UnshredProcessor::builder()
-        .handler(FromShredTxHandler)
+    #[cfg(feature = "async_version")]
+    {
+        info!("current feature async_version");
+    }
+
+    #[cfg(feature = "origin_version")]
+    {
+        info!("current feature origin_version");
+    }
+
+    #[cfg(feature = "async_version")]
+    let processor = unshred::UnshredProcessor::builder()
+        .handler(FromShredTxHandlerAsync)
+        .bind_address("0.0.0.0:7999")
+        .build()
+        .unwrap();
+
+    #[cfg(feature = "origin_version")]
+    let processor = unshred_0::UnshredProcessor::builder()
+        .handler(FromShredTxHandlerOrigin)
         .bind_address("0.0.0.0:7999")
         .build()
         .unwrap();
@@ -81,6 +122,8 @@ fn main() {
                 "P10: {:?}",
                 Duration::from_micros(guard.value_at_percentile(10f64))
             );
+            info!("MAX: {:?}", Duration::from_micros(guard.max()));
+            info!("MIN: {:?}", Duration::from_micros(guard.min()));
             guard.clear();
             info!("----------------")
         }
