@@ -52,12 +52,17 @@ fn main() {
         .build()
         .unwrap();
 
-    async_runtime.spawn(async move { processor.run().await });
+    let handle0 = async_runtime.spawn(async move { processor.run().await });
 
-    async_runtime.spawn(async move {
+    let handle1 = async_runtime.spawn(async move {
         let mut interval = tokio::time::interval(Duration::from_secs(30));
         interval.tick().await;
+        {
+            let mut guard = HIST_GLOBAL.write().unwrap();
+            guard.refresh_timeout(Duration::from_secs(15));
+        }
         loop {
+            info!("开始收集指标");
             interval.tick().await;
             let mut guard = HIST_GLOBAL.write().unwrap();
             guard.refresh_timeout(Duration::from_secs(15));
@@ -78,6 +83,7 @@ fn main() {
                 Duration::from_micros(guard.value_at_percentile(10f64))
             );
             guard.clear();
+            info!("----------------")
         }
     });
 
@@ -89,5 +95,8 @@ fn main() {
 
     info!("Shutdown complete");
 
-    async_runtime.shutdown_timeout(Duration::from_secs(1));
+    handle0.abort();
+    handle1.abort();
+
+    async_runtime.shutdown_timeout(Duration::from_secs(30));
 }
