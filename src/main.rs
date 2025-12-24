@@ -62,7 +62,6 @@ fn main() {
             guard.refresh_timeout(Duration::from_secs(15));
         }
         loop {
-            info!("开始收集指标");
             interval.tick().await;
             let mut guard = HIST_GLOBAL.write().unwrap();
             guard.refresh_timeout(Duration::from_secs(15));
