@@ -8773,6 +8773,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "unshred"
+version = "0.1.0"
+source = "git+https://github.com/victory-man/unshred.git?rev=43a4c18b53e990d3357259ebd665705658f2b0f6#43a4c18b53e990d3357259ebd665705658f2b0f6"
+dependencies = [
+ "ahash 0.8.12",
+ "anyhow",
+ "bincode",
+ "bytes",
+ "dashmap 6.1.0",
+ "libc",
+ "num_cpus",
+ "serde",
+ "socket2 0.5.10",
+ "solana-address 1.1.0",
+ "solana-entry",
+ "solana-hash 3.1.0",
+ "solana-ledger",
+ "solana-sdk",
+ "tokio",
+ "tracing",
+ "wincode 0.2.5",
+]
+
+[[package]]
 name = "unshred-bencher"
 version = "0.1.0"
 dependencies = [
@@ -8783,6 +8807,7 @@ dependencies = [
  "tracing-subscriber",
  "unshred 0.1.0 (git+https://github.com/victory-man/unshred.git?branch=feat_async)",
  "unshred 0.1.0 (git+https://github.com/victory-man/unshred.git?branch=feat_baseline)",
+ "unshred 0.1.0 (git+https://github.com/victory-man/unshred.git?rev=43a4c18b53e990d3357259ebd665705658f2b0f6)",
 ]
 
 [[package]]

@@ -49,6 +49,22 @@ impl unshred_0::TransactionHandler for FromShredTxHandlerOrigin {
     }
 }
 
+#[cfg(feature = "wincode_version")]
+impl unshred_1::TransactionHandler for FromShredTxHandlerOrigin {
+    fn handle_transaction(&self, event: &unshred_1::TransactionEvent) -> anyhow::Result<()> {
+        let now_micros = SystemTime::now().duration_since(UNIX_EPOCH)?.as_micros() as u64;
+        let shred_spent = Duration::from_micros(now_micros - event.processed_at_micros);
+        trace!("shred_spent: {:?}", &shred_spent);
+        HIST.with(|x| {
+            let mut recorder = x.borrow_mut();
+            if let Err(err) = recorder.record(shred_spent.as_micros() as u64) {
+                error!("record shred_spent error: {:?}", err);
+            }
+        });
+        Ok(())
+    }
+}
+
 fn main() {
     tracing_subscriber::fmt::init();
 
@@ -62,6 +78,11 @@ fn main() {
         info!("current feature origin_version");
     }
 
+    #[cfg(feature = "wincode_version")]
+    {
+        info!("current feature wincode_version");
+    }
+
     #[cfg(feature = "async_version")]
     let processor = unshred::UnshredProcessor::builder()
         .handler(FromShredTxHandlerAsync)
@@ -71,6 +92,13 @@ fn main() {
 
     #[cfg(feature = "origin_version")]
     let processor = unshred_0::UnshredProcessor::builder()
+        .handler(FromShredTxHandlerOrigin)
+        .bind_address("0.0.0.0:7999")
+        .build()
+        .unwrap();
+
+    #[cfg(feature = "wincode_version")]
+    let processor = unshred_1::UnshredProcessor::builder()
         .handler(FromShredTxHandlerOrigin)
         .bind_address("0.0.0.0:7999")
         .build()
