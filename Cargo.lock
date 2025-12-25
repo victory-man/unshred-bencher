@@ -4956,10 +4956,11 @@ dependencies = [
 
 [[package]]
 name = "signal-hook-registry"
-version = "1.4.7"
+version = "1.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7664a098b8e616bdfcc2dc0e9ac44eb231eedf41db4e9fe95d8d32ec728dedad"
+checksum = "c4db69cba1110affc0e9f7bcd48bbf87b3f4fc7c61fc9155afd4c469eb3d6c1b"
 dependencies = [
+ "errno",
  "libc",
 ]
 
@@ -8729,7 +8730,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#bb3b36ab305539f7b3d715c1903a144387c84c78"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#aadca007c573a13f02df64184158e344c6d919c8"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
