@@ -20,21 +20,15 @@ struct FromShredTxHandlerOrigin;
 #[cfg(feature = "async_version")]
 impl unshred::TransactionHandler for FromShredTxHandlerAsync {
     fn handle_transaction(&self, event: &unshred::TransactionEvent) -> anyhow::Result<()> {
-        let shred_spent = if let Some(received_at_micros) = event.received_at_micros {
-            let now_micros = SystemTime::now().duration_since(UNIX_EPOCH)?.as_micros() as u64;
-            Some(Duration::from_micros(now_micros - received_at_micros))
-        } else {
-            None
-        };
+        let now_micros = SystemTime::now().duration_since(UNIX_EPOCH)?.as_micros() as u64;
+        let shred_spent = Duration::from_micros(now_micros - event.processed_at_micros);
         trace!("shred_spent: {:?}", &shred_spent);
-        if let Some(shred_spent) = shred_spent {
-            HIST.with(|x| {
-                let mut recorder = x.borrow_mut();
-                if let Err(err) = recorder.record(shred_spent.as_micros() as u64) {
-                    error!("record shred_spent error: {:?}", err);
-                }
-            })
-        }
+        HIST.with(|x| {
+            let mut recorder = x.borrow_mut();
+            if let Err(err) = recorder.record(shred_spent.as_micros() as u64) {
+                error!("record shred_spent error: {:?}", err);
+            }
+        });
         Ok(())
     }
 }
@@ -42,21 +36,15 @@ impl unshred::TransactionHandler for FromShredTxHandlerAsync {
 #[cfg(feature = "origin_version")]
 impl unshred_0::TransactionHandler for FromShredTxHandlerOrigin {
     fn handle_transaction(&self, event: &unshred_0::TransactionEvent) -> anyhow::Result<()> {
-        let shred_spent = if let Some(received_at_micros) = event.received_at_micros {
-            let now_micros = SystemTime::now().duration_since(UNIX_EPOCH)?.as_micros() as u64;
-            Some(Duration::from_micros(now_micros - received_at_micros))
-        } else {
-            None
-        };
+        let now_micros = SystemTime::now().duration_since(UNIX_EPOCH)?.as_micros() as u64;
+        let shred_spent = Duration::from_micros(now_micros - event.processed_at_micros);
         trace!("shred_spent: {:?}", &shred_spent);
-        if let Some(shred_spent) = shred_spent {
-            HIST.with(|x| {
-                let mut recorder = x.borrow_mut();
-                if let Err(err) = recorder.record(shred_spent.as_micros() as u64) {
-                    error!("record shred_spent error: {:?}", err);
-                }
-            })
-        }
+        HIST.with(|x| {
+            let mut recorder = x.borrow_mut();
+            if let Err(err) = recorder.record(shred_spent.as_micros() as u64) {
+                error!("record shred_spent error: {:?}", err);
+            }
+        });
         Ok(())
     }
 }
