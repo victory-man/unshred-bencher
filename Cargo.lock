@@ -8729,7 +8729,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#8c5d0add6dfa62b980c4d4d24995ef1922e5027c"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#28fd7b3df3f47b946755bb347ff94bce5e68495d"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
@@ -8775,7 +8775,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_wincode#9c6dba8c2ebabab14c0709ed71b6baa6dbb40372"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_wincode#025b82dd387b6ab2d2fd739cb37b684b5a5d8591"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
