@@ -8775,7 +8775,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?rev=43a4c18b53e990d3357259ebd665705658f2b0f6#43a4c18b53e990d3357259ebd665705658f2b0f6"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_wincode#15db3dc40a27160cd4f21b4e1e48591d23509c27"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
@@ -8807,7 +8807,7 @@ dependencies = [
  "tracing-subscriber",
  "unshred 0.1.0 (git+https://github.com/victory-man/unshred.git?branch=feat_async)",
  "unshred 0.1.0 (git+https://github.com/victory-man/unshred.git?branch=feat_baseline)",
- "unshred 0.1.0 (git+https://github.com/victory-man/unshred.git?rev=43a4c18b53e990d3357259ebd665705658f2b0f6)",
+ "unshred 0.1.0 (git+https://github.com/victory-man/unshred.git?branch=feat_wincode)",
 ]
 
 [[package]]
