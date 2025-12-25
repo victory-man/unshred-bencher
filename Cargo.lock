@@ -8729,7 +8729,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#2479ecef509c6445cbe7a3b85b49102570ceab2b"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_async#4f64c880c3327fe22a727f24f20afddcb0c605b7"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
