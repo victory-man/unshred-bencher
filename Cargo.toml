@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-unshred = { git = "https://github.com/victory-man/unshred.git", package = "unshred", branch = "feat_async"}
+unshred = { git = "https://github.com/victory-man/unshred.git", package = "unshred", branch = "feat_mmsg_recv"}
 unshred_0 = { git = "https://github.com/victory-man/unshred.git", package = "unshred", branch = "feat_baseline"}
 unshred_1 = { git = "https://github.com/victory-man/unshred.git", package = "unshred", branch = "feat_wincode"}
 tokio = "1.45.1"
