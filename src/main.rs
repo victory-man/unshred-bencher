@@ -140,7 +140,7 @@ fn main() {
             );
             info!("MAX: {:?}", Duration::from_micros(guard.max()));
             info!("MIN: {:?}", Duration::from_micros(guard.min()));
-            guard.clear();
+            // guard.clear();
             info!("----------------")
         }
     });
