@@ -151,10 +151,9 @@ fn main() {
         tokio::signal::ctrl_c().await.unwrap();
     });
 
-    info!("Shutdown complete");
-
-    handle0.abort();
-    handle1.abort();
+    // handle0.abort();
+    // handle1.abort();
 
     async_runtime.shutdown_timeout(Duration::from_secs(1));
+    info!("Shutdown complete");
 }
