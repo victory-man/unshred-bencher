@@ -2502,7 +2502,6 @@ dependencies = [
  "prettytable-rs",
  "serde",
  "serde_json",
- "tokio",
 ]
 
 [[package]]
@@ -8842,15 +8841,14 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#ebf638dd6e18407d93783757e3284bb3e857bc28"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#07d21edebf66f7a489ca981aa619f728b42dd08e"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
  "bytes",
- "crossbeam",
  "dashmap 6.1.0",
+ "hotpath",
  "libc",
- "log",
  "num_cpus",
  "serde",
  "socket2 0.5.10",
@@ -8898,6 +8896,7 @@ dependencies = [
  "bytes",
  "crossbeam",
  "dashmap 6.1.0",
+ "hotpath",
  "libc",
  "log",
  "num_cpus",
