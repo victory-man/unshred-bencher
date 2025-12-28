@@ -81,6 +81,12 @@ impl unshred_2::TransactionHandler for FromShredTxHandlerOrigin {
     }
 }
 
+#[cfg(not(target_env = "msvc"))]
+use tikv_jemallocator::Jemalloc;
+#[cfg(not(target_env = "msvc"))]
+#[global_allocator]
+static GLOBAL: Jemalloc = Jemalloc;
+
 #[cfg_attr(feature = "hotpath", hotpath::main(percentiles = [10,50,99]))]
 fn main() {
     tracing_subscriber::fmt::init();
