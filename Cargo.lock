@@ -8872,6 +8872,7 @@ dependencies = [
  "bincode",
  "bytes",
  "dashmap 6.1.0",
+ "hotpath",
  "libc",
  "num_cpus",
  "serde",
