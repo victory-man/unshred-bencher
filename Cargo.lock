@@ -8867,11 +8867,10 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#8bc4cc0c5135eb56519d8866243dce2b3ef9aff1"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#0261a3ee44437d0fa4653b6655dd970ed50518c7"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
- "arrayref",
  "bytes",
  "crossbeam",
  "dashmap 6.1.0",
