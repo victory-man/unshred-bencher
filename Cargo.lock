@@ -813,7 +813,7 @@ dependencies = [
 [[package]]
 name = "aya"
 version = "0.13.2"
-source = "git+https://github.com/aya-rs/aya.git#3b28447573eca75420a3cfc9198735f5876e37da"
+source = "git+https://github.com/aya-rs/aya.git#5c0ebe8684cd0b3477a7f2dce88230c632237283"
 dependencies = [
  "assert_matches",
  "aya-obj",
@@ -830,7 +830,7 @@ dependencies = [
 [[package]]
 name = "aya-obj"
 version = "0.2.2"
-source = "git+https://github.com/aya-rs/aya.git#3b28447573eca75420a3cfc9198735f5876e37da"
+source = "git+https://github.com/aya-rs/aya.git#5c0ebe8684cd0b3477a7f2dce88230c632237283"
 dependencies = [
  "bytes",
  "hashbrown 0.16.1",
@@ -8918,7 +8918,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#b0035422235abbfcb85e911d3d0bc5a271d1f9ff"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#19adc25498711753233be760fb74e693bca7ffd4"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
