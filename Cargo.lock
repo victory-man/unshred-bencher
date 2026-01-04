@@ -8918,7 +8918,7 @@ dependencies = [
 [[package]]
 name = "unshred"
 version = "0.1.0"
-source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#0ab6baa2af82bd615911cc190e749f991cf2a51f"
+source = "git+https://github.com/victory-man/unshred.git?branch=feat_mmsg_recv#4301a3212b2ffd774d035e553487f6f8993a0b55"
 dependencies = [
  "ahash 0.8.12",
  "anyhow",
@@ -9859,9 +9859,9 @@ dependencies = [
 
 [[package]]
 name = "zmij"
-version = "1.0.9"
+version = "1.0.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4ee2a72b10d087f75fb2e1c2c7343e308fe6970527c22a41caf8372e165ff5c1"
+checksum = "30e0d8dffbae3d840f64bda38e28391faef673a7b5a6017840f2a106c8145868"
 
 [[package]]
 name = "zstd"
